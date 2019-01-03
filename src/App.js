@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import './App.css';
 
+import SingleDay from './components/SingleDay/SingleDay'
+
 class App extends Component {
 
   constructor(props) {
@@ -47,11 +49,24 @@ class App extends Component {
         <header className="App-header">
         
          
-           {this.state.weatherLocation ? <h3>{this.state.weatherLocation}</h3> : null }
-
-           <ul>
-        
+          {this.state.weatherLocation ? <h3>{this.state.weatherLocation}</h3> : null }
+          {this.state.weekDays ?
+            <ul>
+              {
+               this.state.weekDays.map(info => {
+                console.log(info);
+                  return (
+                    <li>
+                      <SingleDay weather={info} />
+                    </li>
+                  )
+               })
+                  
+                
+              }
             </ul>
+          : null }
+         
         
         </header>
       </div>
