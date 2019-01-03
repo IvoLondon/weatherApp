@@ -2,24 +2,35 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import classes from './App.css';
 
-import SingleDay from './components/SingleDay/SingleDay'
+import SingleDay from './components/SingleDay/SingleDay';
+import Slider from 'react-rangeslider';
+import 'react-rangeslider/lib/index.css';
 
 class App extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
+      loader : true,
+      volume : 5,
       weatherLocation : null,
       weekDays : null,
     }
   }
-
+  componentDidUpdate() {
+   this.getWeatherDataHandler();
+  }
   componentDidMount() {
-    axios.get('http://api.openweathermap.org/data/2.5/forecast/daily?q=London,uk&units=metric&cnt=7&APPID=9c3d96c3b408d9a49408b71e7c131587')
+   this.getWeatherDataHandler();
+  }
+
+  getWeatherDataHandler = () => {
+    axios.get('http://api.openweathermap.org/data/2.5/forecast/daily?q=London,uk&units=metric&cnt='+ this.state.volume +'&APPID=9c3d96c3b408d9a49408b71e7c131587')
       .then(response => {
 
         const weatherDays = response.data.list.map(day => {
           return {
+            id : day.dt,
             weekday : new Date(day.dt * 1000).toLocaleDateString('en-US',{weekday: 'long'}),
             temp : {
               day : day.temp.day,
@@ -33,6 +44,7 @@ class App extends Component {
         })
 
         this.setState({
+          loader : null,
           weatherLocation : response.data.city.name,
           weekDays : weatherDays,
         })
@@ -42,6 +54,13 @@ class App extends Component {
         console.log(err);
       })
   }
+
+  handleVolume = (val) => {
+    console.log(val)
+    this.setState({
+      volume : val
+    })
+  } 
 
   render() {
     return (
@@ -54,9 +73,8 @@ class App extends Component {
             <ul className={classes.WeatherList}>
               {
                this.state.weekDays.map(info => {
-                console.log(info);
                   return (
-                    <li key={info.weekday + info.temp.day + info.temp.evening}>
+                    <li key={info.id}>
                       <SingleDay weather={info} />
                     </li>
                   )
@@ -66,8 +84,12 @@ class App extends Component {
               }
             </ul>
           : null }
-         
-        
+          {this.state.loader ? 
+            <p>Loading...</p>
+            :
+            <Slider value={this.state.volume} onChange={this.handleVolume} min={5} max={15} step={1} />
+           
+          }
         </header>
       </div>
     );

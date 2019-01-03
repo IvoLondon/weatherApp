@@ -22,5 +22,5 @@
 }
 .WeatherList li {
   display:inline-flex;
-  padding:0 6px;
+  padding:6px;
 }

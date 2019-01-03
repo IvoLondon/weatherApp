@@ -1,5 +1,6 @@
 .SingleDay {
 	width:100%;
+	min-width: 145px;
 	background-color: #393C42;
 	padding: 15px;
 }
