@@ -1,9 +1,10 @@
 import React from 'react';
+import classes from './SingleDay.css'
 
 
 const SingleDay = (props) => {
 	return (
-		<div>
+		<div className={classes.SingleDay}>
 		<h3>{props.weather.weekday}</h3>
 		<img src={props.weather.weather.icon} />
 		<h4>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import './App.css';
+import classes from './App.css';
 
 import SingleDay from './components/SingleDay/SingleDay'
 
@@ -45,8 +45,8 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
+      <div className={classes.App}>
+        <header className={classes.AppHeader}>
         
          
           {this.state.weatherLocation ? <h3>{this.state.weatherLocation}</h3> : null }
@@ -56,7 +56,7 @@ class App extends Component {
                this.state.weekDays.map(info => {
                 console.log(info);
                   return (
-                    <li>
+                    <li key={info.weekday + info.temp.day + info.temp.evening}>
                       <SingleDay weather={info} />
                     </li>
                   )
