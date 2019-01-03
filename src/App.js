@@ -1,14 +1,40 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import axios from 'axios';
 import './App.css';
 
 class App extends Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      weatherLocation : null,
+      weekDays : null,
+    }
+  }
+
   componentDidMount() {
-    axios.get('http://api.openweathermap.org/data/2.5/forecast?q=London,us&APPID=9c3d96c3b408d9a49408b71e7c131587')
+    axios.get('http://api.openweathermap.org/data/2.5/forecast/daily?q=London,uk&units=metric&cnt=7&APPID=9c3d96c3b408d9a49408b71e7c131587')
       .then(response => {
-        console.log(response.data.city.name);
+
+        const weatherDays = response.data.list.map(day => {
+          return {
+            weekday : new Date(day.dt * 1000).toLocaleDateString('en-US',{weekday: 'long'}),
+            temp : {
+              day : day.temp.day,
+              evening : day.temp.eve,
+            },
+            weather : {
+              desc : day.weather[0].description,
+              icon : "http://openweathermap.org/img/w/" + day.weather[0].icon + ".png",
+            }
+          }
+        })
+
+        this.setState({
+          weatherLocation : response.data.city.name,
+          weekDays : weatherDays,
+        })
+
       })
       .catch(err => {
         console.log(err);
@@ -19,18 +45,14 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
+        
+         
+           {this.state.weatherLocation ? <h3>{this.state.weatherLocation}</h3> : null }
+
+           <ul>
+        
+            </ul>
+        
         </header>
       </div>
     );
