@@ -3,8 +3,6 @@ import axios from 'axios';
 import classes from './App.css';
 
 import SingleDay from './components/SingleDay/SingleDay';
-import Slider from 'react-rangeslider';
-import 'react-rangeslider/lib/index.css';
 
 class App extends Component {
 
@@ -12,7 +10,7 @@ class App extends Component {
     super(props);
     this.state = {
       loader : true,
-      volume : 5,
+      volume : 6,
       weatherLocation : null,
       weekDays : null,
     }
@@ -87,8 +85,7 @@ class App extends Component {
           {this.state.loader ? 
             <p>Loading...</p>
             :
-            <Slider value={this.state.volume} onChange={this.handleVolume} min={5} max={15} step={1} />
-           
+            null
           }
         </header>
       </div>
