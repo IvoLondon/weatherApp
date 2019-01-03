@@ -10,8 +10,8 @@ const SingleDay = (props) => {
 		<h4>
 			{props.weather.weather.desc}
 		</h4>
-		<p>Day : {Math.floor(props.weather.temp.day)}</p> 
-		<p>Night : {Math.floor(props.weather.temp.evening)}</p> 
+		<p>Day : {Math.floor(props.weather.temp.day)}°</p> 
+		<p>Night : {Math.floor(props.weather.temp.evening)}°</p> 
 
 		</div>
 	)

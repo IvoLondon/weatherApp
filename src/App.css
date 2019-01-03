@@ -12,3 +12,15 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
+
+.WeatherList {
+  padding:0;
+  margin:0;
+  display:inline-block;
+  width:100%;
+  list-style: none;
+}
+.WeatherList li {
+  display:inline-flex;
+  padding:0 6px;
+}

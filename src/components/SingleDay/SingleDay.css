@@ -1,3 +1,24 @@
 .SingleDay {
-	background:red;
+	width:100%;
+	background-color: #393C42;
+	padding: 15px;
+}
+.SingleDay h3 {
+	font-size:18px;
+	text-transform: uppercase;
+	margin:0 0 1em;
+}
+.SingleDay h4 {
+	font-size:15px;
+	margin:5px 0;
+	text-transform: capitalize;
+}
+.SingleDay p {
+	font-size:14px;
+}
+
+@media and screen (min-width:992px) {
+	.SingleDay {
+
+	}	
 }

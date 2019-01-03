@@ -51,7 +51,7 @@ class App extends Component {
          
           {this.state.weatherLocation ? <h3>{this.state.weatherLocation}</h3> : null }
           {this.state.weekDays ?
-            <ul>
+            <ul className={classes.WeatherList}>
               {
                this.state.weekDays.map(info => {
                 console.log(info);
