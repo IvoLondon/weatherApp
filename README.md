@@ -1,3 +1,5 @@
+![alt text](https://raw.githubusercontent.com/iwi4a/weatherApp/branch/path/to/img.png)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
